@@ -1,0 +1,44 @@
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema" 	
+ targetNamespace="http://www.example.com/xsdWebLinks"
+ xmlns:wl="http://www.example.com/xsdWebLinks"
+ xmlns:test="http://www.example.com/xsdWebLinksTest">
+
+  <xs:annotation>
+	<xs:documentation>
+		weblinks_groups.xsd extends a format for saving links defined by weblinks.xsd by adding support for groups
+	</xs:documentation>
+  </xs:annotation>
+
+  <import namespace="http://www.example.com/xsdWebLinksTest"
+   schemaLocation="weblinks_test.xsd" />
+
+  <xs:complexType name="groupdef">
+	<xs:annotation>
+		<xs:documentation>
+			this type defines a group of links - a group has a name and can have subgroups
+		</xs:documentation>
+	</xs:annotation>  
+    <xs:complexContent>
+      <xs:extension base="wl:FG">
+        <xs:sequence>
+            <xs:element name="description" type="test:description" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        these elements is a description
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" >
+			<xs:annotation>
+				<xs:documentation>
+					this attribute is required and stores the display name of the group
+				</xs:documentation>
+			</xs:annotation>  
+	    </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+ 
+</xs:schema>
